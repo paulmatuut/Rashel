@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Te Extraño - Interactivo</title>
+  <style>
+    body {
+      background-image: url('https://www.elfinanciero.com.mx/resizer/yTo3__WPUoyoiuosyclCmtbDAlY=/800x0/filters:format(png):quality(70)/cloudfront-us-east-1.images.arcpublishing.com/elfinanciero/23T7UHTUZWSRXI4SD62DPOHDV4.png'); /* Fondo de naturaleza */
+      background-size: cover;
+      background-position: center;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      color: white;
+    }
+    h1 {
+      color: #ffffff;
+      font-size: 3em;
+      margin-bottom: 20px;
+      transition: 0.3s ease-in-out;
+      text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.6); /* Sombra para el texto */
+      font-weight: bold;
+    }
+    .heart {
+      position: absolute;
+      font-size: 35px;
+      color: #ff4081;
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-250px);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Estilo para dispositivos pequeños */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5em;
+      }
+      .heart {
+        font-size: 25px;
+      }
+      .play-button {
+        font-size: 1.2em;
+      }
+    }
+
+    .play-button {
+      background-color: #ff4081;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 1.5em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .play-button:hover {
+      background-color: #f50057;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Te voy a extrañar más de lo que imaginas! 💖</h1>
+
+  <!-- Botón para reproducir música -->
+  <button class="play-button" onclick="playMusic()">Has click aqui Rashel y presiona varias veces -lento jaja -❤️ :</button>
+
+  <!-- Música de fondo (inicialmente no se reproduce) -->
+  <audio id="background-music">
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <script>
+    // Frases románticas de "Te extraño"
+    const frasesDeTeExtraño = [
+      "Te extraño más de lo que imaginas 💔",
+      "Cada día sin ti es un día perdido 💭",
+      "El corazón me duele al no tenerte cerca 💔",
+      "No puedo dejar de pensar en ti, te extraño mucho 🥺",
+      "Te extraño tanto que me faltan palabras para expresarlo 😢",
+      "Cada rincón me recuerda a ti, te extraño más que nunca 💖",
+	  "Suerte en tu viaje💖"
+    ];
+
+    // Reproducir la música cuando el usuario hace clic en el botón
+    function playMusic() {
+      const audio = document.getElementById('background-music');
+      audio.play(); // Reproduce la música
+      document.querySelector('.play-button').style.display = 'none'; // Oculta el botón después de hacer clic
+    }
+
+    // Función para generar corazones y cambiar el mensaje
+    function interactuarConAmor(event) {
+      // Crear un corazón en la posición del clic
+      const heart = document.createElement('span');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = `${event.clientX - 20}px`; // Ajusta la posición X
+      heart.style.top = `${event.clientY - 20}px`; // Ajusta la posición Y
+      heart.style.animationDuration = `${Math.random() * 3 + 2}s`; // Duración aleatoria
+
+      document.body.appendChild(heart);
+
+      // Cambiar el mensaje de "Te extraño" con cada clic
+      const mensaje = frasesDeTeExtraño[Math.floor(Math.random() * frasesDeTeExtraño.length)];
+      document.querySelector('h1').textContent = mensaje;
+
+      // Eliminar el corazón después de que termine la animación
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    // Agregar un evento de clic al documento
+    document.body.addEventListener('click', interactuarConAmor);
+  </script>
+</body>
+</html>
